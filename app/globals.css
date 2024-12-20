@@ -1,0 +1,25 @@
+.outlineOnHover:hover {
+  box-shadow: 0 0 0 5px var(--mantine-primary-color-filled-hover);
+  border-radius: 1.5rem;
+  transform: scale(1.01);
+}
+
+html,
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+  min-height: 100vh;
+  height: 100%;
+}
+
+.background {
+  background-image: url('/subtle-prism.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+article img {
+  max-width: 600px;
+}
