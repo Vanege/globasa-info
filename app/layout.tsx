@@ -13,7 +13,7 @@ import Script from "next/script";
 export const siteConfig = {
   name: 'globasa.info',
   url: 'https://globasa.info',
-  description: 'Makale-dom cel Globasa ji Globasayen',
+  description: 'Makale-dom cel Globasaxey ji Globasayen',
 };
 
 export const metadata = {
