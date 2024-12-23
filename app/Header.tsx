@@ -1,23 +1,61 @@
-import { Button } from '@mantine/core';
+import { Button, Tooltip } from '@mantine/core';
+import { IconBrandDiscord, IconInfoCircle, IconLink, IconTextSpellcheck } from '@tabler/icons-react';
 import Link from 'next/link';
 
 export default async function Header() {
   return (
-    <div style={{ display: "flex", padding: "2.5rem 2.5rem 1.5rem 2.5rem" }}>
+    <div style={{ display: "flex", padding: "2.5rem 2.5rem 1.5rem 2.5rem", flexWrap: "wrap" }}>
       <Link href={`/`} passHref>
         <Button
           radius="xl"
           size="md"
           variant="white"
+          color="var(--globasa-secondary)"
         >
           globasa.info
         </Button>
       </Link>
       <Link href={`/makale/20241220-ku-globasainfo-sen-keto`} passHref style={{ textDecoration: "none", marginLeft: "1rem" }}>
-        <div style={{ backgroundColor: "white", width: "42px", height: "42px", borderRadius: "1.5rem", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "18px" }}>
-          ❓
-        </div>
+        <Tooltip label="Ku keto sen globasa.info">
+          <div style={{ backgroundColor: "white", width: "42px", height: "42px", borderRadius: "1.5rem", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "18px" }}>
+            <IconInfoCircle size={26} color="var(--globasa-secondary)" />
+          </div>
+        </Tooltip>
       </Link>
+      <Link href={`https://conlang-checker.vercel.app/`} target="_blank" passHref style={{ textDecoration: "none", marginLeft: "1rem" }}>
+        <Tooltip label="Lexi-li sahimonitul">
+          <div style={{ backgroundColor: "white", width: "42px", height: "42px", borderRadius: "1.5rem", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "18px" }}>
+            <IconTextSpellcheck size={26} color="var(--globasa-secondary)" />
+          </div>
+        </Tooltip>
+      </Link>
+      <Link href={`https://wiki.globasa.net/wiki/Globasawiki:Lista_fe_linkutul_fe_Globasa`} target="_blank" passHref style={{ textDecoration: "none", marginLeft: "1rem" }}>
+        <Tooltip label="Lista fe linkutul fe Globasa">
+          <div style={{ backgroundColor: "white", width: "42px", height: "42px", borderRadius: "1.5rem", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "18px" }}>
+            <IconLink size={26} color="var(--globasa-secondary)" />
+          </div>
+        </Tooltip>
+      </Link>
+      <Link href={`https://discord.gg/JCaqAvapGR`} target="_blank" passHref style={{ textDecoration: "none", marginLeft: "1rem" }}>
+        <Tooltip label="Discord cel Globasa">
+          <div style={{ backgroundColor: "white", width: "42px", height: "42px", borderRadius: "1.5rem", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "18px" }}>
+            <IconBrandDiscord size={26} color="var(--globasa-secondary)" />
+          </div>
+        </Tooltip>
+      </Link>
+      <Link href={`https://www.globasa.net`} target="_blank" passHref style={{ textDecoration: "none", marginLeft: "1rem" }}>
+        <Tooltip label="Resmi netodomo fe Globasa">
+          <div style={{ backgroundColor: "white", width: "42px", height: "42px", borderRadius: "1.5rem", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "18px" }}>
+            <img
+              width="26px"
+              src="/globasa_flower_transparent_128.png"
+              alt="Linku cel resmi netodom de Globasa"
+            />
+          </div>
+        </Tooltip>
+      </Link>
+
+
 
       {/*
       <Link href={`/search`} passHref>

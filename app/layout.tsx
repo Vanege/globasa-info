@@ -8,6 +8,7 @@ import {
 } from "@mantine/core";
 import { theme } from "../theme";
 import Header from "./Header";
+import Script from "next/script";
 
 export const siteConfig = {
   name: 'globasa.info',
@@ -29,7 +30,11 @@ export default function RootLayout({ children }: { children: any }) {
     <html lang="en" {...mantineHtmlProps}>
       <head>
         <ColorSchemeScript />
-        <link rel="shortcut icon" href="/favicon.svg" />
+        <link
+          rel="icon"
+          href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌐</text></svg>"
+        />
+        {/* <link rel="shortcut icon" href="/favicon.svg" /> */}
         <link
           rel="preload"
           href="/subtle-prism.svg"
@@ -39,6 +44,9 @@ export default function RootLayout({ children }: { children: any }) {
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
+        />
+        <Script
+          src="/script/globasa-hover-dictionary.js"
         />
       </head>
       <body style={{ backgroundColor: "#00820b" }} className="background">

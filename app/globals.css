@@ -1,5 +1,10 @@
+:root {
+  --globasa-primary: #008113;
+  --globasa-secondary: #0040a9
+}
+
 .outlineOnHover:hover {
-  box-shadow: 0 0 0 5px var(--mantine-primary-color-filled-hover);
+  box-shadow: 0 0 0 3px var(--globasa-secondary);
   border-radius: 1.5rem;
   transform: scale(1.01);
 }
@@ -21,5 +26,6 @@ body {
 }
 
 article img {
-  max-width: 600px;
+  width: 600px;
+  max-width: 100%;
 }
