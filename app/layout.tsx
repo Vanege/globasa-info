@@ -13,7 +13,7 @@ import Script from "next/script";
 export const siteConfig = {
   name: 'globasa.info',
   url: 'https://globasa.info',
-  description: 'Multi-kultural jurna fe multi-kultural linguaje',
+  description: 'Makale-dom cel Globasa ji Globasayen',
 };
 
 export const metadata = {
