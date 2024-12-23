@@ -11,7 +11,7 @@ export const article: Article = {
 
 globasa.info sen makale-netodom
 * Makale hare **jandan jumle** ji **pimpan lexi**. Hinloka sen bon cel xoruyen!
-* (sol xali) Na kliku lexi onexa basatayti!
+* Na perya lexi onexa basatayti!
 * Moy texto in moy makale sen **demo-domeni-li** (Public Domain CC0). Moyto haki na riyongu Globasa-li inhare.
 * Makale abil na **tema moyto**. globasa.info-tim cuyo eskri tem plu neo xey in Globasa cel na diskonegi oto.
 * Cele sen xunjan de Globasa ji de Globasa-komuntim.
