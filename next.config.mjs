@@ -12,6 +12,9 @@ const nextConfig = {
   },
   // avoid double trigger of useEffect
   reactStrictMode: false,
+  images: {
+    unoptimized: true,
+  },
 };
 
 export default nextConfig;
