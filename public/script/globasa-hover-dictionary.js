@@ -16,37 +16,32 @@
     }
   }
 
-  // Constants for prefixes and suffixes
+  // Constants from your application
   const prefixes = ['be', 'du', 'aw', 'awto', 'dis', 'eko', 'fin', 'fron', 'ja', 'nen', 'pos', 'pre', 'ri', 'ru', 'xor', 'anti', 'bax', 'pas', 'ex', 'in', 'infra', 'intre', 'le', 'lefe', 'moy', 'of', 'se', 'supra', 'ton', 'tras', 'ultra', 'xa', 'xafe', 'gami', 'hawa', 'bon', 'bur', 'colo', 'cuyo', 'day', 'fem', 'godo', 'juni', 'kwasi', 'lama', 'lao', 'leli', 'lil', 'mal', 'man', 'meli', 'midi', 'neo', 'semi', 'un', 'dua'];
   const suffixes = ['su', 'li', 'mo', 'ya', 'gi', 'cu', 'do', 'ne', 'ple', 'yum', 'gone', 'ina', 'je', 'sa', 'abil', 'bimar', 'bon', 'bur', 'ible', 'fil', 'kal', 'kolordo', 'laye', 'musi', 'peldo', 'pul', 'sim', 'bol', 'din', 'dom', 'doku', 'dukan', 'ente', 'fon', 'hole', 'grafi', 'ismo', 'ista', 'itis', 'kaxa', 'kef', 'krasi', 'kumax', 'lari', 'lexi', 'logi', 'maso', 'medis', 'meter', 'mon', 'mosem', 'osis', 'tim', 'tora', 'tul', 'xey', 'yen'];
 
-  // Create popup element with improved touch handling styles
+  // Create popup element
   const popup = document.createElement('div');
   popup.style.cssText = `
-    position: fixed;
-    padding: 8px 12px;
-    background: rgba(0, 0, 0, 0.9);
-    color: white;
-    border-radius: 4px;
-    font-size: 14px;
-    z-index: 999999;
-    display: none;
-    transform: translate(-50%, -100%);
-    margin-top: -8px;
-    max-width: 400px;
-    white-space: pre-line;
-    touch-action: none;
-    user-select: none;
-    -webkit-user-select: none;
-  `;
+        position: fixed;
+        padding: 8px 12px;
+        background: rgba(0, 0, 0, 0.9);
+        color: white;
+        border-radius: 4px;
+        font-size: 14px;
+        pointer-events: none;
+        z-index: 999999;
+        display: none;
+        transform: translate(-50%, -100%);
+        margin-top: -8px;
+        max-width: 400px;
+        white-space: pre-line;
+    `;
   document.body.appendChild(popup);
 
   let dictionaries = null;
-  let touchTimeout = null;
-  let lastTapTime = 0;
-  const doubleTapDelay = 300; // milliseconds
 
-  // Format etymology
+  // Format etymology like in your original code
   function formatEtymology(etymology) {
     if (!etymology) return '';
     if (etymology.derived) {
@@ -60,7 +55,7 @@
     return '';
   }
 
-  // Word to label conversion
+  // Word to label conversion like in your original code
   function wordToLabel(word) {
     if (!word?.trans) return '';
     const { eng, epo } = word.trans;
@@ -69,7 +64,7 @@
     const wordClass = word["word class"] ? `(${word["word class"]})` : '';
     const etymologyString = formatEtymology(word.etymology);
 
-    let label = `${engString}\n${epoString}\n${wordClass}\n${etymologyString}`;
+    let label = `${engString}\n${epoString}\n${wordClass}\n${etymologyString}`
     return label.replace(/(<([^>]+)>)/gi, '');
   }
 
@@ -77,6 +72,7 @@
   function getWordNode(element, x, y) {
     if (element.nodeType === Node.TEXT_NODE) {
       const range = document.createRange();
+      // Improved regex to handle compound words and punctuation
       const words = element.textContent.split(/(?<=[\s\-])|(?=[\s\-])/);
       let currentPos = 0;
 
@@ -92,6 +88,7 @@
 
         if (x >= rect.left && x <= rect.right &&
           y >= rect.top && y <= rect.bottom) {
+          // Clean the word by removing punctuation and special characters
           const cleanWord = word.replace(/[!.,;?'")\]}]/g, '');
           return { word: cleanWord, rect };
         }
@@ -102,7 +99,7 @@
     return null;
   }
 
-  // Check for compound words
+  // Modified check for compound words
   function checkCompoundWord(word, allWords) {
     // Try direct lookup first
     if (allWords.includes(word)) {
@@ -169,10 +166,8 @@
     };
   }
 
-  // Unified event handler for both mouse and touch
-  async function handleInteraction(e) {
-    e.preventDefault(); // Prevent default only for touch events
-
+  // Show popup with fragment info
+  const showPopup = debounce(async (e) => {
     if (!dictionaries) {
       dictionaries = await fetchDictionaries();
       if (!dictionaries) return;
@@ -181,36 +176,9 @@
     const { globasaDictionary } = dictionaries;
     const allWords = Object.keys(globasaDictionary);
 
-    // Get coordinates based on event type
-    const coords = e.type.startsWith('touch')
-      ? { x: e.touches[0].clientX, y: e.touches[0].clientY }
-      : { x: e.clientX, y: e.clientY };
+    const x = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+    const y = e.type === 'touchstart' ? e.touches[0].clientY : e.clientY;
 
-    // For touch events, implement double-tap detection
-    if (e.type === 'touchstart') {
-      const currentTime = new Date().getTime();
-      const tapLength = currentTime - lastTapTime;
-
-      if (tapLength < doubleTapDelay && tapLength > 0) {
-        // Double tap detected
-        clearTimeout(touchTimeout);
-        showWordPopup(coords.x, coords.y, globasaDictionary, allWords);
-      } else {
-        // Single tap - set timeout to show popup
-        touchTimeout = setTimeout(() => {
-          showWordPopup(coords.x, coords.y, globasaDictionary, allWords);
-        }, 500); // Long press delay
-      }
-
-      lastTapTime = currentTime;
-    } else if (e.type === 'mousemove') {
-      // For mouse events, show immediately
-      showWordPopup(coords.x, coords.y, globasaDictionary, allWords);
-    }
-  }
-
-  // Show word popup with given coordinates
-  function showWordPopup(x, y, globasaDictionary, allWords) {
     let node = document.elementFromPoint(x, y);
     while (node && node !== document.body) {
       const wordInfo = Array.from(node.childNodes)
@@ -225,6 +193,7 @@
         if (word) {
           label = wordToLabel(word);
         } else {
+          // Check for compound words first
           const compound = checkCompoundWord(lowercaseWord, allWords);
           if (compound) {
             const firstWord = globasaDictionary[compound.firstMorpheme];
@@ -233,6 +202,7 @@
               label = `${compound.firstMorpheme} + ${compound.secondMorpheme}\n\n${wordToLabel(firstWord)}\n\n${wordToLabel(secondWord)}`;
             }
           } else {
+            // Check for affixation if not a compound word
             const affixation = checkAffixation(lowercaseWord, allWords);
             if (affixation) {
               const firstWord = globasaDictionary[affixation.firstMorpheme];
@@ -245,60 +215,56 @@
         }
 
         if (label) {
-          positionAndShowPopup(x, y, label);
+          popup.style.display = 'block';
+          popup.textContent = label;
+
+          // Get popup dimensions
+          const popupRect = popup.getBoundingClientRect();
+          const viewportWidth = window.innerWidth;
+          const viewportHeight = window.innerHeight;
+
+          // Calculate position
+          let posX = x;
+          let posY = y;
+
+          // Adjust horizontal position if needed
+          if (x + (popupRect.width / 2) > viewportWidth) {
+            posX = viewportWidth - (popupRect.width / 2) - 10;
+          } else if (x - (popupRect.width / 2) < 0) {
+            posX = (popupRect.width / 2) + 10;
+          }
+
+          // Adjust vertical position if needed
+          if (y - popupRect.height < 10) {
+            // If not enough space above, show below
+            popup.style.transform = 'translate(-50%, 20px)';
+            posY = y;
+          } else {
+            // Show above
+            popup.style.transform = 'translate(-50%, -100%)';
+            posY = y - 10;
+          }
+
+          // Apply position
+          popup.style.left = `${posX}px`;
+          popup.style.top = `${posY}px`;
         }
         return;
       }
       node = node.parentNode;
     }
 
-    hidePopup();
-  }
-
-  // Position and show popup
-  function positionAndShowPopup(x, y, label) {
-    popup.style.display = 'block';
-    popup.textContent = label;
-
-    const popupRect = popup.getBoundingClientRect();
-    const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
-
-    // Calculate position with improved mobile positioning
-    let posX = Math.min(Math.max(x, popupRect.width / 2), viewportWidth - popupRect.width / 2);
-    let posY = y;
-
-    // Check if popup would appear below finger/cursor
-    if (y - popupRect.height < 10) {
-      popup.style.transform = 'translate(-50%, 20px)';
-      posY = y + 20; // Show below with offset
-    } else {
-      popup.style.transform = 'translate(-50%, -100%)';
-      posY = y - 10; // Show above with offset
-    }
-
-    popup.style.left = `${posX}px`;
-    popup.style.top = `${posY}px`;
-  }
+    popup.style.display = 'none';
+  }, 50);
 
   // Hide popup
-  function hidePopup() {
+  const hidePopup = debounce(() => {
     popup.style.display = 'none';
-    if (touchTimeout) {
-      clearTimeout(touchTimeout);
-      touchTimeout = null;
-    }
-  }
+  }, 100);
 
-  // Event listeners with improved touch handling
-  document.addEventListener('mousemove', debounce(handleInteraction, 50), { passive: false });
-  document.addEventListener('mouseout', hidePopup);
-  document.addEventListener('touchstart', handleInteraction, { passive: false });
-  document.addEventListener('touchend', hidePopup);
-  document.addEventListener('touchcancel', hidePopup);
-
-  // Prevent default touch events on popup
-  popup.addEventListener('touchstart', e => e.preventDefault());
-  popup.addEventListener('touchmove', e => e.preventDefault());
-  popup.addEventListener('touchend', e => e.preventDefault());
+  // Event listeners
+  document.addEventListener('mousemove', showPopup, { passive: true });
+  document.addEventListener('mouseout', hidePopup, { passive: true });
+  document.addEventListener('touchstart', showPopup, { passive: true });
+  document.addEventListener('touchend', hidePopup, { passive: true });
 })();
