@@ -4,7 +4,7 @@ import Article from './Article';
 export default function ArticleCards({ initialArticles }: { initialArticles: EnrichedArticle[] }) {
   return (
     <div style={{ display: "flex", flexWrap: "wrap", marginRight: "-1rem", marginLeft: "-1rem" }}>
-      {initialArticles.map(article => <Article article={article} />)}
+      {initialArticles.map(article => <Article article={article} key={`${article.originalIndex}-${article.title}`} />)}
     </div>
   );
 }

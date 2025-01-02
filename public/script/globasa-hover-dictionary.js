@@ -89,7 +89,7 @@
         if (x >= rect.left && x <= rect.right &&
           y >= rect.top && y <= rect.bottom) {
           // Clean the word by removing punctuation and special characters
-          const cleanWord = word.replace(/[!.,;?'")\]}]/g, '');
+          const cleanWord = word.replace(/[!.,;?:'")\]}]/g, '');
           return { word: cleanWord, rect };
         }
 

@@ -16,7 +16,7 @@ export default async function Header() {
         </Button>
       </Link>
       <Link href={`/makale/20241220-ku-globasainfo-sen-keto`} passHref style={{ textDecoration: "none", marginLeft: "1rem" }}>
-        <Tooltip label="Ku keto sen globasa.info">
+        <Tooltip label="Ku globasa.info sen keto">
           <div style={{ backgroundColor: "white", width: "42px", height: "42px", borderRadius: "1.5rem", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "18px" }}>
             <IconInfoCircle size={26} color="var(--globasa-secondary)" />
           </div>
@@ -37,7 +37,7 @@ export default async function Header() {
         </Tooltip>
       </Link>
       <Link href={`https://discord.gg/JCaqAvapGR`} target="_blank" passHref style={{ textDecoration: "none", marginLeft: "1rem" }}>
-        <Tooltip label="Discord cel Globasa">
+        <Tooltip label="Resmi discord fe Globasa">
           <div style={{ backgroundColor: "white", width: "42px", height: "42px", borderRadius: "1.5rem", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "18px" }}>
             <IconBrandDiscord size={26} color="var(--globasa-secondary)" />
           </div>
