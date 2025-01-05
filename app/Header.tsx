@@ -49,7 +49,6 @@ export default async function Header() {
             <img
               width="26px"
               src="/globasa_flower_transparent_128.png"
-              alt="Linku cel resmi netodom de Globasa"
             />
           </div>
         </Tooltip>
