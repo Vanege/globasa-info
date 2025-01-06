@@ -13,6 +13,7 @@ SCP-wiki sen day bukado tonergoli projeto feki moyun person harizin na fatmin xi
 
 [http://scp-int.wikidot.com/unofficial:qgb:scp-529](http://scp-int.wikidot.com/unofficial:qgb:scp-529)  
 [http://scp-int.wikidot.com/unofficial:qgb:scp-005](http://scp-int.wikidot.com/unofficial:qgb:scp-005)
+[http://scp-int.wikidot.com/unofficial:qgb:scp-173](http://scp-int.wikidot.com/unofficial:qgb:scp-173)
 
 Bannumer yen abil na sen hataripul. Denseba, in wiki, hay informe tem anjen intreaksyon. Fe ban mara, yen sen godomo hataripul tas sosyaltim, fe den kaso, yen bebujo-musi ji anjeli beawgi-musi.
 
