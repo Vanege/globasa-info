@@ -41,6 +41,26 @@
 
   let dictionaries = null;
 
+  const replaceEntities = (str) => {
+    const replacements = {
+      '&ldquo;': '\u201C',  // LEFT DOUBLE QUOTATION MARK
+      '&rdquo;': '\u201D',  // RIGHT DOUBLE QUOTATION MARK
+      '&uacute;': '\u00FA', // LATIN SMALL LETTER U WITH ACUTE
+      '&oacute;': '\u00F3', // LATIN SMALL LETTER O WITH ACUTE
+      '&eacute;': '\u00E9', // LATIN SMALL LETTER E WITH ACUTE
+      '&egrave;': 'è',
+      '&lrm;': '\u200E',    // LEFT-TO-RIGHT MARK
+      '&ecirc;': '\u00EA',  // LATIN SMALL LETTER E WITH CIRCUMFLEX
+      '&ocirc;': '\u00F4',   // LATIN SMALL LETTER O WITH CIRCUMFLEX
+      '&aacute;': 'á'
+    };
+
+    return str.replace(
+      new RegExp(Object.keys(replacements).join('|'), 'g'),
+      match => replacements[match]
+    );
+  };
+
   // Format etymology like in your original code
   function formatEtymology(etymology) {
     if (!etymology) return '';
@@ -49,7 +69,9 @@
     }
     if (etymology.natlang) {
       return Object.entries(etymology.natlang)
-        .map(([key, value]) => `${key}: ${value}`)
+        .map(([key, value]) => {
+          return `${key}: ${replaceEntities(value)}`
+        })
         .join('\n');
     }
     return '';
