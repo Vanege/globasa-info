@@ -16,7 +16,7 @@ Cel na hala hin problema, hay alo versyon de eskripu feki inhare de menalari uje
 Unyum eskripu, am jandan kopi ji inplasi to in kodi-dom de brawsetul ji na presyon "Enter". Xafe dento, am idi per lexi hu da sonzay in Globasa:
 [https://gist.github.com/Vanege/c8518a96f280fc20c0b79242d18749ec](https://gist.github.com/Vanege/c8518a96f280fc20c0b79242d18749ec)
 
-Video: ku kemaner na yongu Globasa-menalari in moy netodom: https://www.youtube.com/watch?v=h9ykv0NBurk
+Video: ku kemaner na yongu Globasa-menalari in moy netodom: [https://www.youtube.com/watch?v=h9ykv0NBurk](https://www.youtube.com/watch?v=h9ykv0NBurk)
 
 Duayum eskripu, hu da uje inhare menalari fe xoru fe 2025. Hin eskripu funsyon in max netodom, mas menalari no sen fe maxim nerleli versyon:
 [https://gist.github.com/Vanege/9960ec5d28b650391d2a20dc55046f97](https://gist.github.com/Vanege/9960ec5d28b650391d2a20dc55046f97)
